@@ -9,5 +9,12 @@ export default defineConfig({
   // There is a default port, but you can change it like this
   server: {
     port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    }
   }
 })
